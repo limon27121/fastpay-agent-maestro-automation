@@ -1,0 +1,67 @@
+appId: com.fastpay.business
+tags:
+  - smoke
+  - regression
+  - P0
+  - Functional
+---
+- assertVisible:
+    id: menuWithdrawIcon
+- tapOn:
+    id: btnSendMoney
+- assertVisible:
+    id: toolbarNavContainer
+- assertVisible: SELL BALANCE
+- assertVisible: Enter customer account number
+- assertVisible:
+    id: countyCodeLayout
+- assertVisible: Mobile Number
+- assertVisible:
+    id: imgScan
+- tapOn:
+    id: imgScan
+- runFlow:
+    when:
+      visible: "Allow FastpayAgent to take pictures and record video?"
+    commands:
+      - tapOn: "While using the app"
+- tapOn:
+    id: ivClose
+- tapOn: Mobile Number
+- inputText: "7507507501"
+- assertVisible:
+    id: customEditTextEndImageView
+- tapOn:
+    id: tvMoneyAmount
+- inputText: "255"
+- assertVisible:
+    id: ivIncrement
+- tapOn:
+    id: ivIncrement
+- assertVisible:
+    id: ivDecrement
+- tapOn:
+    id: ivDecrement
+# - tapOn:
+#     id: input_method_nav_back
+- tapOn: CONFIRM
+- assertVisible: PROCEED
+- tapOn:
+    id: dialogProceedBtn
+- runFlow: ../../flows/Pin_Helper.yaml
+- tapOn:
+    id: dialogCardView
+- assertVisible:
+    id: btnRight
+- tapOn:
+    id: dialogConfirmBtn
+- assertVisible:
+    id: nav_host_dashboard
+- assertVisible:
+    id: toolbarNavContainer
+- tapOn:
+    id: tvInvoicePhoneNo
+- assertVisible:
+    id: llReportAProblem
+- tapOn:
+    id: ivHome

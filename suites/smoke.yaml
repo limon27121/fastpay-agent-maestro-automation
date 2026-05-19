@@ -1,4 +1,3 @@
 appId: com.fastpay.business
 ---
-- launchApp:
-    clearState: true
+- runFlow: ../e2e/LogIn/LogIn_success.yaml

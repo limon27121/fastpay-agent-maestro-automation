@@ -27,15 +27,39 @@ CYAN='\033[0;36m'
 NC='\033[0m' # No Color
 
 # Configuration
-APP_NAME="Card Selling Agent"
+# APP_NAME="Card Selling Agent"
+# TIMESTAMP=$(date +%Y%m%d-%H%M%S)
+# REPORT_DIR="reports"
+# JUNIT_DIR="${REPORT_DIR}/junit"
+# HTML_DIR="${REPORT_DIR}/html"
+# SCREENSHOT_DIR="${REPORT_DIR}/screenshots"
+# SUITE_FILE=".maestro/suites/smoke-suite.yaml"
+# LOG_FILE="${REPORT_DIR}/logs/smoke-${TIMESTAMP}.log"
+
+#----------------------
+
+#!/bin/bash
+
+# Project Core Setup
+PROJECT_NAME="fastpay-agent"
+APP_NAME="fastpay-agent"
+PROJECT_ROOT="/home/limon/FastPayAgent_Maestro"
+
+# Timestamp for unique file generation
 TIMESTAMP=$(date +%Y%m%d-%H%M%S)
-REPORT_DIR="reports"
+
+# Reports Directories (Organized under the project root)
+REPORT_DIR="${PROJECT_ROOT}/reports"
 JUNIT_DIR="${REPORT_DIR}/junit"
 HTML_DIR="${REPORT_DIR}/html"
 SCREENSHOT_DIR="${REPORT_DIR}/screenshots"
-SUITE_FILE=".maestro/suites/smoke-suite.yaml"
-LOG_FILE="${REPORT_DIR}/logs/smoke-${TIMESTAMP}.log"
+LOG_DIR="${REPORT_DIR}/logs"
 
+# Corrected Suite File Path (Points to your actual suites directory)
+SUITE_FILE="${PROJECT_ROOT}/suites/smoke.yaml"
+LOG_FILE="${LOG_DIR}/smoke-${TIMESTAMP}.log"
+
+#--------------------------------
 # Create directories
 mkdir -p ${JUNIT_DIR}
 mkdir -p ${HTML_DIR}
