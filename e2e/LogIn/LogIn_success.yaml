@@ -88,4 +88,4 @@ appId: com.fastpay.business
 - assertVisible:
     id: nav_host_root
 - tapOn: BACK
-- runFlow: ../../../flows/login_helper.yaml
+- runFlow: ../../flows/login_helper.yaml
