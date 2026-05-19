@@ -1,0 +1,4 @@
+appId: com.fastpay.business
+---
+- launchApp:
+    clearState: true

@@ -1,4 +1,11 @@
 appId: com.fastpay.business
+tags:
+  - smoke
+  - regression
+  - P0
+  - Functional
+
+
 ---
 - tapOn: FastpayAgent
 #English
