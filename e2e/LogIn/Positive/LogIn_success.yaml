@@ -1,0 +1,91 @@
+appId: com.fastpay.business
+---
+- tapOn: FastpayAgent
+#English
+- assertVisible:
+    id: topHeader
+- assertVisible: Welcome Back!
+- tapOn: Sign-in to continue
+
+- assertVisible:
+    id: customEditTextLayout
+- assertVisible: Mobile Number
+- assertVisible:
+    id: customEditTextEndImageView
+- assertVisible:
+    id: passwordLayout
+- assertVisible: Forgot Password?
+- assertVisible: Login
+- assertVisible:
+    id: ivFingerPrint
+- assertVisible: Login with Finger print
+
+#Arabic
+
+- tapOn:
+    id: firstLangLayout
+- tapOn: العربية
+- assertVisible:
+    id: topHeader
+- assertVisible: مرحبا بعودتك!
+- assertVisible: قم بتسجيل الدخول للمتابعة
+- assertVisible:
+    id: customEditTextLayout
+- assertVisible:
+    id: customEditTextView
+- assertVisible:
+    id: customEditTextEndImageView
+- assertVisible:
+    id: customEditTextView
+    index: 1
+- assertVisible:
+    id: customEditTextEndImageView
+    index: 1
+- assertVisible:
+    id: forgotPassword
+- assertVisible:
+    id: loginBtn
+- assertVisible:
+    id: ivFingerPrint
+- assertVisible:
+    id: tvLoginWithFingerPrint
+
+#Kurdish
+
+- tapOn:
+    id: languageChangeLayout
+- tapOn: كوردی
+- assertVisible:
+    id: topHeader
+- assertVisible: به‌خێربێیته‌وه‌!
+- assertVisible: بڕۆ ژووره‌وه‌ بۆ به‌رده‌وامبوون
+- assertVisible:
+    id: customEditTextLayout
+- assertVisible:
+    id: customEditTextView
+- tapOn:
+    id: customEditTextEndImageView
+- assertVisible:
+    id: customEditTextView
+    index: 1
+- assertVisible:
+    id: customEditTextEndImageView
+    index: 1
+- assertVisible: پاسوۆرده‌كه‌ت له‌ بیر چووه‌؟
+- assertVisible: چونه‌ژووره‌وه‌
+- assertVisible:
+    id: ivFingerPrint
+- assertVisible: چوونەژوورەوە بە پەنجەمۆر
+
+- tapOn:
+    id: customLanguageChooseView
+- tapOn: English
+
+#Biometic section
+
+- tapOn:
+    id: ivFingerPrint
+- assertVisible:
+    id: nav_host_root
+- tapOn: BACK
+- runFlow: ../../../flows/login_helper.yaml
