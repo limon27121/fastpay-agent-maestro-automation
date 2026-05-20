@@ -4,11 +4,13 @@ tags:
   - regression
   - P0
   - Functional
+
 ---
+- tapOn: FastpayAgent
 - longPressOn: Mobile Number
 - tapOn: Cut
 # - tapOn: Mobile Number
-- inputText: ${User}
+- inputText: "7507507501"
 - tapOn:
     id: customEditTextView
     index: 1
@@ -25,3 +27,6 @@ tags:
     index: 1
 - tapOn:
     id: loginBtn
+- assertVisible:
+    id: dialogCardView
+- tapOn: TRY AGAIN
