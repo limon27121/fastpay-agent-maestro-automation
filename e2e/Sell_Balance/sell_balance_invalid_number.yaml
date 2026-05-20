@@ -1,0 +1,16 @@
+appId: com.fastpay.agent
+---
+- assertVisible:
+    id: menuWithdrawIcon
+- tapOn:
+    id: btnSendMoney
+- assertVisible:
+    id: toolbarNavContainer
+- runFlow:
+    file: "../../flows/Sell_Balance.yaml" # Adjust relative path to point to your login_helper location
+    env:
+      User: "6600000185"
+      Amount: "255"
+- assertVisible:
+    id: dialogCardView
+- tapOn: TRY AGAIN
