@@ -1,0 +1,20 @@
+appId: com.fastpay.agent
+---
+- tapOn: Mobile Number
+- inputText: ${User}
+- assertVisible:
+    id: customEditTextEndImageView
+- tapOn:
+    id: tvMoneyAmount
+- inputText: ${Amount}
+- assertVisible:
+    id: ivIncrement
+- tapOn:
+    id: ivIncrement
+- assertVisible:
+    id: ivDecrement
+- tapOn:
+    id: ivDecrement
+# - tapOn:
+#     id: input_method_nav_back
+- tapOn: CONFIRM

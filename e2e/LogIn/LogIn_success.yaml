@@ -1,4 +1,4 @@
-appId: com.fastpay.business
+appId: com.fastpay.agent
 tags:
   - smoke
   - regression
@@ -6,7 +6,8 @@ tags:
   - Functional
 
 ---
-- tapOn: FastpayAgent
+# - launchApp
+# - tapOn: FastpayAgent
 #English
 - assertVisible:
     id: topHeader

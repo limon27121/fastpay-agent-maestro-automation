@@ -1,8 +1,4 @@
 appId: com.fastpay.business
-# env:
-#     User: "6600000185"             # Default User credential
-#     Password: "Password100@11"
-
 ---
 # CONDITION 1: Check if the field contains ANY phone number (using regex for digits and spaces)
 - runFlow:

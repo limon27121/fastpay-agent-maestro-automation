@@ -1,4 +1,4 @@
-appId: com.fastpay.business
+appId: com.fastpay.agent
 tags:
   - smoke
   - regression
@@ -27,24 +27,31 @@ tags:
       - tapOn: "While using the app"
 - tapOn:
     id: ivClose
-- tapOn: Mobile Number
-- inputText: "7507507501"
-- assertVisible:
-    id: customEditTextEndImageView
-- tapOn:
-    id: tvMoneyAmount
-- inputText: "255"
-- assertVisible:
-    id: ivIncrement
-- tapOn:
-    id: ivIncrement
-- assertVisible:
-    id: ivDecrement
-- tapOn:
-    id: ivDecrement
+- runFlow:
+    file: "../../flows/Sell_Balance.yaml" # Adjust relative path to point to your login_helper location
+    env:
+      User: "7507507501"
+      Amount: "255"
+
+# - tapOn: Mobile Number
+# - inputText: "7507507501"
+# - assertVisible:
+#     id: customEditTextEndImageView
 # - tapOn:
-#     id: input_method_nav_back
-- tapOn: CONFIRM
+#     id: tvMoneyAmount
+# - inputText: "255"
+# - assertVisible:
+#     id: ivIncrement
+# - tapOn:
+#     id: ivIncrement
+# - assertVisible:
+#     id: ivDecrement
+# - tapOn:
+#     id: ivDecrement
+# # - tapOn:
+# #     id: input_method_nav_back
+# - tapOn: CONFIRM
+
 - assertVisible: PROCEED
 - tapOn:
     id: dialogProceedBtn

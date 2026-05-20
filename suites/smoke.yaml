@@ -1,3 +1,6 @@
-appId: com.fastpay.business
+appId: com.fastpay.agent
 ---
+- runFlow: ../e2e/LogIn/Invalid_Number.yaml
+- runFlow: ../e2e/LogIn/Wrong_Password.yaml
 - runFlow: ../e2e/LogIn/LogIn_success.yaml
+- runFlow: ../e2e/Sell_Balance/Sell_Balance_Success.yaml
