@@ -5,7 +5,6 @@ tags:
   - P0
   - Functional
 
-
 ---
 - tapOn: FastpayAgent
 #English
@@ -95,4 +94,14 @@ tags:
 - assertVisible:
     id: nav_host_root
 - tapOn: BACK
-- runFlow: ../../flows/login_helper.yaml
+# - runFlow: ../../flows/login_helper.yaml
+- runFlow:
+    file: "../../flows/login_helper.yaml" # Adjust relative path to point to your login_helper location
+    env:
+      User: "6600000185" # The invalid phone number
+      Password: "Password100@11" # The correct password
+
+# 1. Hard close the app session
+# - stopApp: "com.fastpay.business"
+# - pressKey: "home"
+# - killApp: "com.fastpay.business"

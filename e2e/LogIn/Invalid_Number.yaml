@@ -6,27 +6,42 @@ tags:
   - Functional
 
 ---
-- tapOn: FastpayAgent
-- longPressOn: Mobile Number
-- tapOn: Cut
-# - tapOn: Mobile Number
-- inputText: "7507507501"
-- tapOn:
-    id: customEditTextView
-    index: 1
-- eraseText
-- inputText: ${Password}
-- tapOn:
-    id: customEditTextEndImageView
-    index: 1
+# - tapOn: FastpayAgent
+# - longPressOn: Mobile Number
+# - tapOn: Cut
+# # - tapOn: Mobile Number
+# - inputText: "7507507501"
+# - tapOn:
+#     id: customEditTextView
+#     index: 1
+# - eraseText
+# - inputText: ${Password}
+# - tapOn:
+#     id: customEditTextEndImageView
+#     index: 1
+# - assertVisible:
+#     id: customEditTextView
+#     index: 1
+# - tapOn:
+#     id: customEditTextEndImageView
+#     index: 1
+# - tapOn:
+#     id: loginBtn
+# - assertVisible:
+#     id: dialogCardView
+# - tapOn: TRY AGAIN
+
+# Step 1: Initialize the app interaction (if needed)
+- tapOn: "FastpayAgent"
+
+# Step 2: Call the shared helper script and inject the invalid credentials
+- runFlow:
+    file: "../../flows/login_helper.yaml" # Adjust relative path to point to your login_helper location
+    env:
+      User: "7507507501" # The invalid phone number
+      Password: "Password100@11" # The correct password
+
+# Step 3: Assert the error dialog that pops up for an invalid number
 - assertVisible:
-    id: customEditTextView
-    index: 1
-- tapOn:
-    id: customEditTextEndImageView
-    index: 1
-- tapOn:
-    id: loginBtn
-- assertVisible:
-    id: dialogCardView
-- tapOn: TRY AGAIN
+    id: "dialogCardView"
+- tapOn: "TRY AGAIN"
