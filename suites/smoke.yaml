@@ -3,5 +3,6 @@ appId: com.fastpay.agent
 - runFlow: ../e2e/LogIn/Invalid_Number.yaml
 - runFlow: ../e2e/LogIn/Wrong_Password.yaml
 - runFlow: ../e2e/LogIn/LogIn_success.yaml
+- runFlow: ../e2e/Sell_Balance/Insufficient_Balance.yaml
 - runFlow: ../e2e/Sell_Balance/sell_balance_invalid_number.yaml
 - runFlow: ../e2e/Sell_Balance/Sell_Balance_Success.yaml

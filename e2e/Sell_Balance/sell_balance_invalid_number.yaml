@@ -1,9 +1,9 @@
 appId: com.fastpay.agent
 ---
-- assertVisible:
-    id: menuWithdrawIcon
-- tapOn:
-    id: btnSendMoney
+# - assertVisible:
+#     id: menuWithdrawIcon
+# - tapOn:
+#     id: btnSendMoney
 - assertVisible:
     id: toolbarNavContainer
 - runFlow:
@@ -13,4 +13,5 @@ appId: com.fastpay.agent
       Amount: "255"
 - assertVisible:
     id: dialogCardView
+- assertVisible: The selected receiver mobile number is invalid.
 - tapOn: TRY AGAIN
