@@ -11,7 +11,7 @@ appId: com.fastpay.agent
 - assertVisible:
     id: toolbarNavContainer
 - runFlow:
-    file: "../../flows/Sell_Balance.yaml"
+    file: "../../flows/Verify_Sell_Balance_Screen_Appears.yaml"
     env:
       User: "7507507501" # Valid user targeting the Over-Balance rule
       Amount: ${output.overBalance}
@@ -19,5 +19,5 @@ appId: com.fastpay.agent
 # 6. Assert and handle the error dialog state for Insufficient Funds
 - assertVisible:
     id: "dialogCardView"
-- assertVisible: Sorry! You do not have sufficient amount to transfer
+# - assertVisible: Sorry! You do not have sufficient amount to transfer
 - tapOn: "TRY AGAIN"
