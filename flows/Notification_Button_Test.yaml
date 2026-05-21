@@ -1,0 +1,30 @@
+appId: com.fastpay.agent
+---
+- assertVisible:
+    id: imageView4
+- tapOn:
+    id: badge_icon
+- assertVisible:
+    id: tvTitle3
+- assertVisible: Transactions
+- tapOn: Transactions
+- assertVisible: Mark all as read
+- assertVisible:
+    id: searchText
+- tapOn:
+    id: searchText
+- eraseText
+- inputText: "money sent"
+- tapOn:
+    id: 0_resource_name_obfuscated
+    index: 51
+
+- tapOn: Promotion
+- assertVisible:
+    id: notificationRecycler
+- tapOn:
+    id: promoImageView
+    index: 1
+- back
+- tapOn:
+    id: ivBack

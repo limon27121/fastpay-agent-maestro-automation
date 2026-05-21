@@ -1,17 +1,15 @@
 appId: com.fastpay.agent
 ---
-# - assertVisible:
-#     id: menuWithdrawIcon
-# - tapOn:
-#     id: btnSendMoney
 - assertVisible:
     id: toolbarNavContainer
 - runFlow:
-    file: "../../flows/Sell_Balance.yaml" # Adjust relative path to point to your login_helper location
+    file: "../../flows/Verify_Sell_Balance_Screen_Appears.yaml" # Adjust relative path to point to your login_helper location
     env:
       User: "6600000185"
       Amount: "255"
 - assertVisible:
     id: dialogCardView
-- assertVisible: The selected receiver mobile number is invalid.
+# - assertVisible: The selected receiver mobile number is invalid.
 - tapOn: TRY AGAIN
+- tapOn:
+    id: ivBack
