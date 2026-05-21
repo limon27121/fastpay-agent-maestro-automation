@@ -1,0 +1,68 @@
+appId: com.fastpay.agent
+---
+- waitForAnimationToEnd
+- copyTextFrom:
+    id: 'tvPhoneNo'
+# FIXED: Explicitly mapping to output.qr_Balance to keep variable in scope
+- evalScript: ${output.phone_number1 = Number(maestro.copiedText.replace(/[^0-9.]/g, ''))}
+
+- assertVisible:
+    id: btnReceiveMoney
+- tapOn:
+    id: menuReceiveMoneyIcon
+- assertVisible: BUY BALANCE
+- assertVisible: How much money you would like to receive?
+- assertVisible:
+    id: linearLayout2
+- assertVisible:
+    id: ivIncrement
+- assertVisible:
+    id: ivDecrement
+- assertVisible:
+    id: ivHome
+- tapOn:
+    id: ivHome
+- tapOn:
+    id: btnReceiveMoney
+- runFlow: ../../flows/Notification_Button_Test.yaml
+- tapOn:
+    id: tvMoneyAmount
+- eraseText
+- inputText: '255'
+- tapOn:
+    id: ivIncrement
+- tapOn:
+    id: ivDecrement
+
+# --- Extract Input Field Balance ---
+- copyTextFrom:
+    id: 'tvMoneyAmount'
+- evalScript: ${output.Balance = Number(maestro.copiedText.replace(/[^0-9.]/g, ''))}
+
+- tapOn: Generate QR code
+- assertVisible:
+    id: dialogCardView
+- assertVisible:
+    id: ivQrCode
+
+# --- Extract Generated QR Modal Balance ---
+- copyTextFrom:
+    id: 'tvAmount'
+# FIXED: Explicitly mapping to output.qr_Balance to keep variable in scope
+- evalScript: ${output.qr_Balance = Number(maestro.copiedText.replace(/[^0-9.]/g, ''))}
+
+- copyTextFrom:
+    id: 'tvPhoneNum'
+# FIXED: Explicitly mapping to output.qr_Balance to keep variable in scope
+- evalScript: ${output.phone_number = Number(maestro.copiedText.replace(/[^0-9.]/g, ''))}
+
+# FIXED: Standardizing comparison evaluating absolute delta between both output states
+- assertTrue: ${ Math.abs(Math.round(output.Balance) - Math.round(output.qr_Balance)) <= 1 }
+
+- assertVisible:
+    id: dialogContainer
+- assertVisible: BACK TO HOME
+- tapOn:
+    id: dialogConfirmBtn
+- assertTrue: ${ Math.abs(Math.round(output.phone_number) - Math.round(output.phone_number1)) <= 1 }
+
