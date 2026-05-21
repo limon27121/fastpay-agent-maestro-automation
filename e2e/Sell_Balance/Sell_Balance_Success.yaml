@@ -5,13 +5,40 @@ tags:
   - P0
   - Functional
 ---
-# - assertVisible:
-#     id: menuWithdrawIcon
-# - tapOn:
-#     id: btnSendMoney
+# --- Step 1: Capture Initial Balance ---
+- copyTextFrom:
+    id: "tvAmountFastPay"
+- evalScript: ${output.Before_Balance = Number(maestro.copiedText.replace(/[^0-9.]/g, ''))}
+
+- tapOn:
+    id: btnSendMoney
 - assertVisible:
     id: toolbarNavContainer
 - assertVisible: SELL BALANCE
+#Test Page header navigation
+
+#Fastpay Logo
+- assertVisible:
+    id: ivHome
+- tapOn:
+    id: ivHome
+- assertVisible:
+    id: profileLeft
+- tapOn:
+    id: menuWithdrawIcon
+#Notification
+- runFlow: ../../flows/Notification_Button_Test.yaml
+
+#Back Button
+- assertVisible:
+    id: ivBack
+- tapOn:
+    id: ivBack
+- assertVisible:
+    id: constraintLayout3
+- tapOn:
+    id: menuWithdrawIcon
+#Main Body
 - assertVisible: Enter customer account number
 - assertVisible:
     id: countyCodeLayout
@@ -28,29 +55,14 @@ tags:
 - tapOn:
     id: ivClose
 - runFlow:
-    file: "../../flows/Sell_Balance.yaml" # Adjust relative path to point to your login_helper location
+    file: "../../flows/Verify_Sell_Balance_Screen_Appears.yaml" # Adjust relative path to point to your login_helper location
     env:
       User: "7507507501"
       Amount: "255"
 
-# - tapOn: Mobile Number
-# - inputText: "7507507501"
-# - assertVisible:
-#     id: customEditTextEndImageView
-# - tapOn:
-#     id: tvMoneyAmount
-# - inputText: "255"
-# - assertVisible:
-#     id: ivIncrement
-# - tapOn:
-#     id: ivIncrement
-# - assertVisible:
-#     id: ivDecrement
-# - tapOn:
-#     id: ivDecrement
-# # - tapOn:
-# #     id: input_method_nav_back
-# - tapOn: CONFIRM
+- copyTextFrom:
+    id: "tvTotal"
+- evalScript: ${output.total_Balance = Number(maestro.copiedText.replace(/[^0-9.]/g, ''))}
 
 - assertVisible: PROCEED
 - tapOn:
@@ -72,3 +84,12 @@ tags:
     id: llReportAProblem
 - tapOn:
     id: ivHome
+
+- waitForAnimationToEnd
+
+- copyTextFrom:
+    id: "tvAmountFastPay"
+- evalScript: ${output.After_Balance = Number(maestro.copiedText.replace(/[^0-9.]/g, ''))}
+#cannot excute because of issue from mobile end
+
+# - assertTrue: ${ Math.round(output.After_Balance) == Math.round(output.Before_Balance - output.total_Balance) }
