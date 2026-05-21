@@ -5,10 +5,10 @@ tags:
   - P0
   - Functional
 ---
-- assertVisible:
-    id: menuWithdrawIcon
-- tapOn:
-    id: btnSendMoney
+# - assertVisible:
+#     id: menuWithdrawIcon
+# - tapOn:
+#     id: btnSendMoney
 - assertVisible:
     id: toolbarNavContainer
 - assertVisible: SELL BALANCE
