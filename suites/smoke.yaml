@@ -6,3 +6,4 @@ appId: com.fastpay.agent
 - runFlow: ../e2e/Sell_Balance/Insufficient_Balance.yaml
 - runFlow: ../e2e/Sell_Balance/sell_balance_invalid_number.yaml
 - runFlow: ../e2e/Sell_Balance/Sell_Balance_Success.yaml
+- runFlow: ../e2e/Buy_Balance/Successful_Buy_Balance.yaml

@@ -6,9 +6,6 @@ tags:
   - Functional
 
 ---
-# - launchApp
-# - tapOn: FastpayAgent
-#English
 - assertVisible:
     id: topHeader
 - assertVisible: Welcome Back!

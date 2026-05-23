@@ -7,9 +7,6 @@ tags:
 
 ---
 - launchApp
-# Step 1: Initialize the app interaction (if needed)
-# - tapOn: "FastpayAgent"
-
 # Step 2: Call the shared helper script and inject the invalid credentials
 - runFlow:
     file: "../../flows/login_helper.yaml" # Adjust relative path to point to your login_helper location
