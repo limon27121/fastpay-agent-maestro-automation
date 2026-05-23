@@ -1,10 +1,5 @@
-appId: com.sslwireless.fastpay
-tags:
-  - smoke
-  - regression
-  - P0
-  - Functional
+appId: com.fastpay.agent
 ---
 - tapOn:
     id: editTextPin1
-- inputText: "5890"
+- inputText: ${Pin}
