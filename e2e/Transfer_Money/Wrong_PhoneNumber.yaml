@@ -1,0 +1,34 @@
+appId: com.fastpay.agent
+---
+- assertVisible: TRANSFER MONEY
+- assertVisible: Recent contacts
+- assertVisible:
+    id: recipient_root_view
+- assertVisible: Mobile Number
+- runFlow:
+    when:
+      visible:
+        text: ".*[0-9].*" # Matches any text containing numbers
+    commands:
+      - longPressOn: Mobile Number
+      - tapOn: Cut
+      - inputText: "1000000066"
+
+# CONDITION 2: If no numbers are found (field is completely empty or just shows a text hint)
+- runFlow:
+    when:
+      notVisible:
+        text: ".*[0-9].*"
+    commands:
+      - tapOn: "Mobile Number"
+      - inputText: "1000000066"
+- assertVisible:
+    id: customEditTextEndImageView
+- tapOn:
+    id: tvMoneyAmount
+- eraseText
+- inputText: "255"
+- assertVisible: CONFIRM
+- tapOn: CONFIRM
+- assertVisible: Sorry! The sender and the receiver are not from the same city.
+- tapOn: TRY AGAIN

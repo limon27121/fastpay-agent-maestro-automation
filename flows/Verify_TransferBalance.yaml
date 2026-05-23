@@ -1,0 +1,35 @@
+appId: com.fastpay.agent
+---
+- assertVisible: Mobile Number
+- runFlow:
+    when:
+      visible:
+        text: ".*[0-9].*" # Matches any text containing numbers
+    commands:
+      - longPressOn: Mobile Number
+      - tapOn: Cut
+      - inputText: "1000000066"
+
+# CONDITION 2: If no numbers are found (field is completely empty or just shows a text hint)
+- runFlow:
+    when:
+      notVisible:
+        text: ".*[0-9].*"
+    commands:
+      - tapOn: "Mobile Number"
+      - inputText: "1000000066"
+- tapOn:
+    id: tvMoneyAmount
+- eraseText
+- inputText: ${Amount}
+- assertVisible:
+    id: ivIncrement
+- tapOn:
+    id: ivIncrement
+- assertVisible:
+    id: ivDecrement
+- tapOn:
+    id: ivDecrement
+# - tapOn:
+#     id: input_method_nav_back
+- tapOn: CONFIRM

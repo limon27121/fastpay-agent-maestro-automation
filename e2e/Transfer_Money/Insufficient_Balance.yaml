@@ -1,0 +1,33 @@
+appId: com.fastpay.agent
+---
+- tapOn:
+    id: ivHome
+- copyTextFrom:
+    id: "tvAmountFastPay"
+- evalScript: ${output.overBalance = Number(maestro.copiedText.replace(/[^0-9.]/g, '')) + 5000.0}
+- assertVisible:
+    id: menuTransferMoneyIcon
+- tapOn:
+    id: menuTransferMoneyIcon
+- assertVisible:
+    id: toolbarNavContainer
+- assertVisible: TRANSFER MONEY
+- tapOn: Mobile Number
+
+- inputText: "1000000077"
+- tapOn:
+    id: tvMoneyAmount
+- eraseText
+- inputText: ${output.overBalance}
+
+# - runFlow:
+#     file: "../../flows/Verify_TransferBalance.yaml"
+#     env:
+#       User: "1000000077" # Valid user targeting the Over-Balance rule
+#       Amount: ${output.overBalance}
+# 6. Assert and handle the error dialog state for Insufficient Funds
+- tapOn: CONFIRM
+- assertVisible:
+    id: "dialogCardView"
+- assertVisible: Sorry! You do not have sufficient amount to transfer
+- tapOn: "TRY AGAIN"

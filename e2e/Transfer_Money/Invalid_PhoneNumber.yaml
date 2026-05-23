@@ -1,0 +1,29 @@
+appId: com.fastpay.agent
+---
+- assertVisible:
+    id: menuTransferMoneyIcon
+
+- tapOn:
+    id: menuTransferMoneyIcon
+- assertVisible: TRANSFER MONEY
+- runFlow: ../../flows/Notification_Button_Test.yaml
+- assertVisible: Recent contacts
+- assertVisible:
+    id: recipient_root_view
+- assertVisible: Mobile Number
+- tapOn: "Mobile Number"
+- inputText: "1000007878"
+- tapOn:
+    id: customEditTextView
+- inputText: "1000007878"
+- assertVisible:
+    id: customEditTextEndImageView
+- tapOn:
+    id: tvMoneyAmount
+- eraseText
+
+- inputText: "255"
+- assertVisible: CONFIRM
+- tapOn: CONFIRM
+- assertVisible: The selected receiver mobile number is invalid.
+- tapOn: TRY AGAIN
