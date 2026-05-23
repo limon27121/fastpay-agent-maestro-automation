@@ -2,9 +2,6 @@ appId: com.fastpay.agent
 ---
 - tapOn:
     id: ivHome
-- copyTextFrom:
-    id: "tvAmountFastPay"
-- evalScript: ${output.overBalance = Number(maestro.copiedText.replace(/[^0-9.]/g, '')) + 5000.0}
 - assertVisible:
     id: menuTransferMoneyIcon
 - tapOn:
@@ -16,8 +13,16 @@ appId: com.fastpay.agent
     file: "../../flows/Verify_TransferBalance.yaml" # Adjust relative path to point to your login_helper location
     env:
       User: "1000000077"
-      Amount: ${output.overBalance}
+      Amount: "255"
 - assertVisible:
     id: "dialogCardView"
-- assertVisible: Sorry! You do not have sufficient amount to transfer
-- tapOn: "TRY AGAIN"
+- tapOn: PROCEED
+- runFlow:
+    file: "../../flows/Pin_Helper.yaml" # Adjust relative path to point to your login_helper location
+    env:
+      Pin: "1234"
+- assertVisible: Sorry! Pin doesn't match.
+- tapOn:
+    id: dialogConfirmBtn
+- tapOn:
+    id: ivHome

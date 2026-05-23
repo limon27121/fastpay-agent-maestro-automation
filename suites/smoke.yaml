@@ -7,3 +7,9 @@ appId: com.fastpay.agent
 - runFlow: ../e2e/Sell_Balance/sell_balance_invalid_number.yaml
 - runFlow: ../e2e/Sell_Balance/Sell_Balance_Success.yaml
 - runFlow: ../e2e/Buy_Balance/Successful_Buy_Balance.yaml
+- runFlow: ../e2e/Transfer_Money/Invalid_PhoneNumber.yaml
+- runFlow: ../e2e/Transfer_Money/Wrong_PhoneNumber.yaml
+- runFlow: ../e2e/Transfer_Money/Wrong_Pin.yaml
+- runFlow: ../e2e/Transfer_Money/Insufficient_Balance.yaml
+- runFlow: ../e2e/Transfer_Money/Limit_Exceed.yaml
+- runFlow: ../e2e/Transfer_Money/Transfer_Money_Success.yaml

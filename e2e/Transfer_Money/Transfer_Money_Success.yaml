@@ -1,0 +1,104 @@
+appId: com.fastpay.agent
+---
+# 1. Navigate and get initial phone number and balance
+- tapOn:
+    id: "ivHome"
+- scrollUntilVisible:
+    element:
+      id: "tvPhoneNo"
+    direction: UP
+
+- copyTextFrom:
+    id: "tvPhoneNo"
+- evalScript: |
+    var rawText = maestro.copiedText || "";
+    // Extract only digits, then slice the last 10 characters to bypass varying country codes (like +964 vs 0)
+    var cleanDigits = rawText.replace(/[^0-9]/g, '');
+    output.Mobile_number01 = cleanDigits.length >= 10 ? cleanDigits.slice(-10) : cleanDigits;
+
+- copyTextFrom:
+    id: "tvAmountFastPay"
+- evalScript: ${output.Before_Balance = Number(parseFloat(maestro.copiedText.replace(/[^0-9.]/g, '')).toFixed(2)) || 0}
+# 2. Enter Transfer Money flow and execute layout validations
+- assertVisible:
+    id: "menuTransferMoneyIcon"
+- tapOn:
+    id: "menuTransferMoneyIcon"
+- assertVisible:
+    id: "toolbarNavContainer"
+- assertVisible: "TRANSFER MONEY"
+
+# - runFlow: ../../flows/Notification_Button_Test.yaml
+
+- assertVisible:
+    id: "recipient_root_view"
+- assertVisible:
+    id: "customEditTextEndImageView"
+- assertVisible:
+    id: "imgScan"
+- tapOn:
+    id: "imgScan"
+- assertVisible:
+    id: "relativeLayout3"
+- tapOn:
+    id: "ivClose"
+
+# 3. Enter transfer details using the subflow
+- runFlow:
+    file: "../../flows/Verify_TransferBalance.yaml"
+    env:
+      User: "1000000077"
+      Amount: "260"
+- assertVisible:
+    id: "dialogCardView"
+
+# 4. Extract total transaction cost (Amount + Charges) from confirmation screen
+- copyTextFrom:
+    id: "tvTotal"
+- evalScript: ${output.total_Balance = Number(parseFloat(maestro.copiedText.replace(/[^0-9.]/g, '')).toFixed(2)) || 0}
+- tapOn: "PROCEED"
+
+# 5. Security PIN handling
+- runFlow:
+    file: "../../flows/Pin_Helper.yaml"
+    env:
+      Pin: "5890"
+
+# 6. Success validations and matching recipient phone number
+- assertVisible: "Success! Money Sent Successfully"
+
+- copyTextFrom:
+    id: "tvMobileNumber"
+- evalScript: |
+    var rawText = maestro.copiedText || "";
+    var cleanDigits = rawText.replace(/[^0-9]/g, '');
+    output.Mobile_number02 = cleanDigits.length >= 10 ? cleanDigits.slice(-10) : cleanDigits;
+
+# Assert phone numbers match exactly (Case-sensitivity bug fixed)
+- assertTrue: ${output.Mobile_number01 == output.Mobile_number02}
+
+- tapOn:
+    id: "dialogConfirmBtn"
+
+# 7. Invoice screen validation
+- assertVisible:
+    id: "layoutMain"
+- assertVisible:
+    id: "tvInvoicePhoneNo"
+
+# 8. Return Home and calculate final wallet balance deduction
+- tapOn:
+    id: "ivHome"
+- copyTextFrom:
+    id: "tvAmountFastPay"
+- evalScript: |
+    var cleanText = maestro.copiedText.replace(/[^0-9.]/g, '');
+    output.After_Balance = Number(parseFloat(cleanText).toFixed(2)) || 0;
+
+# Calculate mathematical expectation to handle JavaScript precision anomalies safely
+- evalScript: |
+    output.Expected_Balance = Number((output.Before_Balance - output.total_Balance).toFixed(2));
+    console.log("Before: " + output.Before_Balance + " | Deducted: " + output.total_Balance + " | Expected: " + output.Expected_Balance + " | Actual After: " + output.After_Balance);
+
+# Clear, precise mathematical verification
+- assertTrue: ${output.After_Balance === output.Expected_Balance}

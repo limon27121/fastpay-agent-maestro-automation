@@ -12,7 +12,9 @@ appId: com.fastpay.agent
 - runFlow:
     file: "../../flows/Verify_TransferBalance.yaml" # Adjust relative path to point to your login_helper location
     env:
-      User: "1000000066"
+      User: "1000000077"
       Amount: "255"
-- assertVisible: Sorry! The sender and the receiver are not from the same city.
+- assertVisible:
+    id: dialogCardView
+- assertVisible: Number of daily transaction limit reached or will exceed.
 - tapOn: TRY AGAIN

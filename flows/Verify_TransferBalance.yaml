@@ -1,23 +1,8 @@
 appId: com.fastpay.agent
 ---
 - assertVisible: Mobile Number
-- runFlow:
-    when:
-      visible:
-        text: ".*[0-9].*" # Matches any text containing numbers
-    commands:
-      - longPressOn: Mobile Number
-      - tapOn: Cut
-      - inputText: "1000000066"
-
-# CONDITION 2: If no numbers are found (field is completely empty or just shows a text hint)
-- runFlow:
-    when:
-      notVisible:
-        text: ".*[0-9].*"
-    commands:
-      - tapOn: "Mobile Number"
-      - inputText: "1000000066"
+- tapOn: "Mobile Number"
+- inputText: ${User}
 - tapOn:
     id: tvMoneyAmount
 - eraseText
