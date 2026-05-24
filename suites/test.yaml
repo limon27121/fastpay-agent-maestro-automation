@@ -1,0 +1,5 @@
+appId: com.fastpay.agent
+---
+- runFlow: ../e2e/LogIn/LogIn_success.yaml
+- runFlow: ../e2e/Transfer_Money/Limit_Exceed.yaml
+- runFlow: ../e2e/Buy_Balance/Successful_Buy_Balance.yaml
