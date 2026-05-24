@@ -1,0 +1,34 @@
+appId: com.fastpay.agent
+---
+- launchApp
+- runFlow:
+    file: "../../flows/login_helper.yaml" # Adjust relative path to point to your login_helper location
+    env:
+      User: "6600000185"
+      Password: "Password100@11" # The correct password
+- assertVisible:
+    id: menuTransferMoneyIcon
+- tapOn:
+    id: menuTransferMoneyIcon
+- assertVisible:
+    id: toolbarNavContainer
+- assertVisible: TRANSFER MONEY
+- runFlow:
+    file: "../../flows/Verify_TransferBalance.yaml" # Adjust relative path to point to your login_helper location
+    env:
+      User: "1000000077"
+      Amount: "255"
+- assertVisible:
+    id: "dialogCardView"
+- tapOn: PROCEED
+- runFlow:
+    file: "../../flows/Pin_Helper.yaml" # Adjust relative path to point to your login_helper location
+    env:
+      Pin: "1234"
+- assertVisible: Sorry! Pin doesn't match.
+- tapOn:
+    id: dialogConfirmBtn
+- tapOn:
+    id: ivHome
+- runFlow: ../../flows/Tear_down.yaml
+- stopApp

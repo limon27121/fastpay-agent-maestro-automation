@@ -6,6 +6,8 @@ tags:
   - Functional
 
 ---
+- launchApp
+
 - assertVisible:
     id: topHeader
 - assertVisible: Welcome Back!
@@ -24,69 +26,6 @@ tags:
     id: ivFingerPrint
 - assertVisible: Login with Finger print
 
-#Arabic
-
-- tapOn:
-    id: firstLangLayout
-- tapOn: العربية
-- assertVisible:
-    id: topHeader
-- assertVisible: مرحبا بعودتك!
-- assertVisible: قم بتسجيل الدخول للمتابعة
-- assertVisible:
-    id: customEditTextLayout
-- assertVisible:
-    id: customEditTextView
-- assertVisible:
-    id: customEditTextEndImageView
-- assertVisible:
-    id: customEditTextView
-    index: 1
-- assertVisible:
-    id: customEditTextEndImageView
-    index: 1
-- assertVisible:
-    id: forgotPassword
-- assertVisible:
-    id: loginBtn
-- assertVisible:
-    id: ivFingerPrint
-- assertVisible:
-    id: tvLoginWithFingerPrint
-
-#Kurdish
-
-- tapOn:
-    id: languageChangeLayout
-- tapOn: كوردی
-- assertVisible:
-    id: topHeader
-- assertVisible: به‌خێربێیته‌وه‌!
-- assertVisible: بڕۆ ژووره‌وه‌ بۆ به‌رده‌وامبوون
-- assertVisible:
-    id: customEditTextLayout
-- assertVisible:
-    id: customEditTextView
-- tapOn:
-    id: customEditTextEndImageView
-- assertVisible:
-    id: customEditTextView
-    index: 1
-- assertVisible:
-    id: customEditTextEndImageView
-    index: 1
-- assertVisible: پاسوۆرده‌كه‌ت له‌ بیر چووه‌؟
-- assertVisible: چونه‌ژووره‌وه‌
-- assertVisible:
-    id: ivFingerPrint
-- assertVisible: چوونەژوورەوە بە پەنجەمۆر
-
-- tapOn:
-    id: customLanguageChooseView
-- tapOn: English
-
-#Biometic section
-
 - tapOn:
     id: ivFingerPrint
 - assertVisible:
@@ -99,7 +38,11 @@ tags:
       User: "6600000185" # The invalid phone number
       Password: "Password100@11" # The correct password
 
-# 1. Hard close the app session
-# - stopApp: "com.fastpay.business"
-# - pressKey: "home"
-# - killApp: "com.fastpay.business"
+- assertVisible:
+    id: imageView4
+
+- assertVisible: HOME
+- assertVisible: Quick Access
+
+- runFlow: ../../flows/Tear_down.yaml
+- stopApp

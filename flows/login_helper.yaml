@@ -1,38 +1,76 @@
 appId: com.fastpay.business
 ---
 # CONDITION 1: Check if the field contains ANY phone number (using regex for digits and spaces)
+
 - runFlow:
     when:
       visible:
-        text: ".*[0-9].*" # Matches any text containing numbers
+        text: ".*[6].*" # Matches any text containing numbers
     commands:
-      - longPressOn: Mobile Number
+      - longPressOn:
+          id: customEditTextView
       - tapOn: Cut
       - inputText: ${User}
 
 # CONDITION 2: If no numbers are found (field is completely empty or just shows a text hint)
 - runFlow:
     when:
-      notVisible:
-        text: ".*[0-9].*"
+      visible:
+        text: Mobile Number
     commands:
       - tapOn: "Mobile Number"
       - inputText: ${User}
 
-# Proceed with the rest of your password and login steps
+# 2. Select the input field
+# - tapOn:
+#     id: "customEditTextView"
+
+# # 3. Read what is inside to check for pre-existing text
+# - copyTextFrom:
+#     id: "customEditTextView"
+
+# # 4. Use JavaScript to identify if digits are present
+# - evalScript: |
+#     var currentText = maestro.copiedText || "";
+#     output.hasNumbers = /[0-9]/.test(currentText);
+
+# # CONDITION 1: Wipes text using a reliable erase loop instead of relying on the "Cut" popup menu
+# - runFlow:
+#     when:
+#       true: ${output.hasNumbers === true}
+#     commands:
+#       # Tapping at the end of the line ensures the cursor is placed behind the text for backspacing
+#       - tapOn:
+#           id: "customEditTextView"
+#       # Backspaces up to 15 times to absolutely guarantee an empty input field
+#       - eraseText: 15
+#       - inputText: ${User}
+
+# # CONDITION 2: If the field is completely empty or contains a non-numeric text placeholder hint string
+# - runFlow:
+#     when:
+#       true: ${output.hasNumbers === false}
+#     commands:
+#       - inputText: ${User}
+
+# 5. Handle the Password Input safely
 - tapOn:
-    id: customEditTextView
+    id: "customEditTextView"
     index: 1
-- eraseText
+- eraseText: 20
 - inputText: ${Password}
+
+# 6. Eye icon toggle to mask/unmask security characters
 - tapOn:
-    id: customEditTextEndImageView
+    id: "customEditTextEndImageView"
     index: 1
 - assertVisible:
-    id: customEditTextView
+    id: "customEditTextView"
     index: 1
 - tapOn:
-    id: customEditTextEndImageView
+    id: "customEditTextEndImageView"
     index: 1
+
+# 7. Submit transaction details
 - tapOn:
-    id: loginBtn
+    id: "loginBtn"

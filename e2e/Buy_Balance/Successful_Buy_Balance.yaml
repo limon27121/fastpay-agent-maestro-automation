@@ -1,5 +1,12 @@
 appId: com.fastpay.agent
 ---
+- launchApp
+
+- runFlow:
+    file: '../../flows/login_helper.yaml' # Adjust relative path to point to your login_helper location
+    env:
+      User: '6600000185'
+      Password: 'Password100@11' # The correct password
 - waitForAnimationToEnd
 - copyTextFrom:
     id: 'tvPhoneNo'
@@ -65,4 +72,5 @@ appId: com.fastpay.agent
 - tapOn:
     id: dialogConfirmBtn
 - assertTrue: ${ Math.abs(Math.round(output.phone_number) - Math.round(output.phone_number1)) <= 1 }
-
+- runFlow: ../../flows/Tear_down.yaml
+- stopApp

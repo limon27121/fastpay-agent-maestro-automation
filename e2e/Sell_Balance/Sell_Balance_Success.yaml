@@ -5,6 +5,12 @@ tags:
   - P0
   - Functional
 ---
+- launchApp
+- runFlow:
+    file: "../../flows/login_helper.yaml" # Adjust relative path to point to your login_helper location
+    env:
+      User: "6600000185" # The invalid phone number
+      Password: "Password100@11" # The correct password
 # --- Step 1: Capture Initial Balance ---
 - copyTextFrom:
     id: "tvAmountFastPay"
@@ -93,3 +99,5 @@ tags:
 #cannot excute because of issue from mobile end
 
 # - assertTrue: ${ Math.round(output.After_Balance) == Math.round(output.Before_Balance - output.total_Balance) }
+- runFlow: ../../flows/Tear_down.yaml
+- stopApp
