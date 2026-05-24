@@ -1,12 +1,13 @@
 appId: com.fastpay.agent
 ---
 # 1. Navigate and get initial phone number and balance
-- tapOn:
-    id: "ivHome"
-- scrollUntilVisible:
-    element:
-      id: "tvPhoneNo"
-    direction: UP
+- launchApp
+
+- runFlow:
+    file: "../../flows/login_helper.yaml" # Adjust relative path to point to your login_helper location
+    env:
+      User: "6600000185"
+      Password: "Password100@11" # The correct password
 
 - copyTextFrom:
     id: "tvPhoneNo"
@@ -102,3 +103,5 @@ appId: com.fastpay.agent
 
 # Clear, precise mathematical verification
 - assertTrue: ${output.After_Balance === output.Expected_Balance}
+- runFlow: ../../flows/Tear_down.yaml
+- stopApp

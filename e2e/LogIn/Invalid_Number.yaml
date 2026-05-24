@@ -7,7 +7,6 @@ tags:
 
 ---
 - launchApp
-# Step 2: Call the shared helper script and inject the invalid credentials
 - runFlow:
     file: "../../flows/login_helper.yaml" # Adjust relative path to point to your login_helper location
     env:
@@ -18,3 +17,5 @@ tags:
 - assertVisible:
     id: "dialogCardView"
 - tapOn: "TRY AGAIN"
+- stopApp
+# - runFlow: ../../flows/Tear_down.yaml

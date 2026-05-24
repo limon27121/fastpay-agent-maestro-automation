@@ -1,5 +1,11 @@
 appId: com.fastpay.agent
 ---
+- launchApp
+- runFlow:
+    file: "../../flows/login_helper.yaml" # Adjust relative path to point to your login_helper location
+    env:
+      User: "6600000185"
+      Password: "Password100@11" # The correct password
 - copyTextFrom:
     id: "tvAmountFastPay"
 - evalScript: ${output.overBalance = Number(maestro.copiedText.replace(/[^0-9.]/g, '')) + 5000.0}
@@ -21,3 +27,7 @@ appId: com.fastpay.agent
     id: "dialogCardView"
 # - assertVisible: Sorry! You do not have sufficient amount to transfer
 - tapOn: "TRY AGAIN"
+- tapOn:
+    id: ivHome
+- runFlow: ../../flows/Tear_down.yaml
+- stopApp

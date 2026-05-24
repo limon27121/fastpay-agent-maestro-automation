@@ -1,7 +1,11 @@
 appId: com.fastpay.agent
 ---
-- tapOn:
-    id: ivHome
+- launchApp
+- runFlow:
+    file: "../../flows/login_helper.yaml" # Adjust relative path to point to your login_helper location
+    env:
+      User: "6600000185"
+      Password: "Password100@11" # The correct password
 - assertVisible:
     id: menuTransferMoneyIcon
 - tapOn:
@@ -26,3 +30,5 @@ appId: com.fastpay.agent
     id: dialogConfirmBtn
 - tapOn:
     id: ivHome
+- runFlow: ../../flows/Tear_down.yaml
+- stopApp

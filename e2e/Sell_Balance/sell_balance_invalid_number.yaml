@@ -1,7 +1,16 @@
 appId: com.fastpay.agent
 ---
+- launchApp
+
+- runFlow:
+    file: "../../flows/login_helper.yaml" # Adjust relative path to point to your login_helper location
+    env:
+      User: "6600000185" # The invalid phone number
+      Password: "Password100@11" # The correct password
 - assertVisible:
-    id: toolbarNavContainer
+    id: relativeLayout2
+- tapOn:
+    id: menuWithdrawIcon
 - runFlow:
     file: "../../flows/Verify_Sell_Balance_Screen_Appears.yaml" # Adjust relative path to point to your login_helper location
     env:
@@ -13,3 +22,6 @@ appId: com.fastpay.agent
 - tapOn: TRY AGAIN
 - tapOn:
     id: ivBack
+
+- runFlow: ../../flows/Tear_down.yaml
+- stopApp

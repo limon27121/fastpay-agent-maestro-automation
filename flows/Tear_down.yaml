@@ -1,0 +1,5 @@
+appId: com.fastpay.agent
+---
+# stopApp closes the application process and safely returns to the device home screen
+- tapOn: Navigate up
+- tapOn: LOG OUT

@@ -1,6 +1,7 @@
 appId: com.fastpay.agent
 ---
-- tapOn: Mobile Number
+- tapOn:
+   id: customEditTextView
 - eraseText
 - inputText: ${User}
 - assertVisible:

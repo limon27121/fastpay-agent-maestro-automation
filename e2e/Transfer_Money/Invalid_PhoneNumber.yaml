@@ -1,5 +1,12 @@
 appId: com.fastpay.agent
 ---
+- launchApp
+
+- runFlow:
+    file: "../../flows/login_helper.yaml" # Adjust relative path to point to your login_helper location
+    env:
+      User: "6600000185"
+      Password: "Password100@11" # The correct password
 - assertVisible:
     id: menuTransferMoneyIcon
 - tapOn:
@@ -15,3 +22,7 @@ appId: com.fastpay.agent
       Amount: "255"
 - assertVisible: The selected receiver mobile number is invalid.
 - tapOn: TRY AGAIN
+- tapOn:
+    id: ivHome
+- runFlow: ../../flows/Tear_down.yaml
+- stopApp

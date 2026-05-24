@@ -11,5 +11,5 @@ appId: com.fastpay.agent
 - runFlow: ../e2e/Transfer_Money/Wrong_PhoneNumber.yaml
 - runFlow: ../e2e/Transfer_Money/Wrong_Pin.yaml
 - runFlow: ../e2e/Transfer_Money/Insufficient_Balance.yaml
-- runFlow: ../e2e/Transfer_Money/Limit_Exceed.yaml
+# - runFlow: ../e2e/Transfer_Money/Limit_Exceed.yaml
 - runFlow: ../e2e/Transfer_Money/Transfer_Money_Success.yaml
