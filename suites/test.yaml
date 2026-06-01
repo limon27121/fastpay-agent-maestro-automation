@@ -1,0 +1,34 @@
+appId: com.fastpay.agent
+---
+# ========================================================================
+# TEST 1: LogIn Success
+# ========================================================================
+# - runFlow:
+#     file: "../e2e/LogIn/LogIn_success.yaml"
+#     optional: true
+- runFlow:
+    file: "../e2e/LogIn/test_login.yaml"
+    optional: true
+
+# ---- Recovery ----
+- runFlow: ../flows/recovery.yaml
+
+# ========================================================================
+# TEST 2: Limit Exceed
+# ========================================================================
+- runFlow:
+    file: "../e2e/Transfer_Money/Limit_Exceed.yaml"
+    optional: true
+
+# ---- Recovery ----
+- runFlow: ../flows/recovery.yaml
+
+# ========================================================================
+# TEST 3: Buy Balance
+# ========================================================================
+- runFlow:
+    file: "../e2e/Buy_Balance/Successful_Buy_Balance.yaml"
+    optional: true
+
+# ---- Recovery ----
+- runFlow: ../flows/recovery.yaml

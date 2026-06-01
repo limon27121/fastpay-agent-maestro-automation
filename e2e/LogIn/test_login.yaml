@@ -1,0 +1,47 @@
+appId: com.fastpay.business
+tags:
+  - smoke
+  - regression
+  - P0
+  - Functional
+---
+- tapOn: FastpayAgent
+
+- assertVisible:
+    id: topHeader
+- assertVisible: Welcome Back!
+- tapOn: Sign-in to continue
+
+- assertVisible:
+    id: customEditTextLayout
+- assertVisible: Mobile Number
+- assertVisible:
+    id: customEditTextEndImageView
+- assertVisible:
+    id: passwordLayout
+- assertVisible: Forgot Password?
+- assertVisible: Login
+- assertVisible:
+    id: ivFingerPrint
+- assertVisible: Login with Finger print
+
+- tapOn:
+    id: ivFingerPrint
+- assertVisible:
+    id: nav_host_root
+- tapOn: BACK
+# - runFlow: ../../flows/login_helper.yaml
+- runFlow:
+    file: "../../flows/login_helper.yaml" # Adjust relative path to point to your login_helper location
+    env:
+      User: "6600000185" # The invalid phone number
+      Password: "Password100@11" # The correct password
+
+- assertVisible:
+    id: imageView4
+
+- assertVisible: HOME
+- assertVisible: Quick Access
+
+- runFlow: ../../flows/Tear_down.yaml
+- stopApp

@@ -1,5 +1,26 @@
 appId: com.fastpay.agent
 ---
-# stopApp closes the application process and safely returns to the device home screen
-- tapOn: Navigate up
-- tapOn: LOG OUT
+# Dismiss any open dialog if present
+- runFlow:
+    file: "helpers/dismiss_dialog.yaml"
+    optional: true
+
+- waitForAnimationToEnd
+
+# Go to home screen first
+- runFlow:
+    file: "helpers/go_home.yaml"
+    optional: true
+
+- waitForAnimationToEnd
+
+# Logout
+- runFlow:
+    file: "helpers/logout.yaml"
+    optional: true
+
+- waitForAnimationToEnd
+
+# Stop the agent app
+- stopApp:
+    appId: com.fastpay.agent
