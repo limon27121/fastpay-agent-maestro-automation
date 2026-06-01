@@ -5,6 +5,8 @@ appId: com.fastpay.agent
     file: "helpers/dismiss_dialog.yaml"
     optional: true
 
+- waitForAnimationToEnd
+
 # Go to home screen first
 - runFlow:
     file: "helpers/go_home.yaml"
@@ -18,4 +20,7 @@ appId: com.fastpay.agent
     optional: true
 
 - waitForAnimationToEnd
-- stopApp
+
+# Stop the agent app
+- stopApp:
+    appId: com.fastpay.agent

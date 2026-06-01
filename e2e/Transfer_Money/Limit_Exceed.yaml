@@ -1,30 +1,55 @@
-appId: com.fastpay.agent
+appId: com.fastpay.business
+tags:
+  - smoke
+  - regression
+  - P0
+  - Functional
 ---
-- launchApp
+# Launch the agent app
+- tapOn: FastpayAgent
+- waitForAnimationToEnd
 
+# Login
 - runFlow:
-    file: "../../flows/login_helper.yaml" # Adjust relative path to point to your login_helper location
+    file: "../../flows/login_helper.yaml"
     env:
       User: "6600000185"
-      Password: "Password100@11" # The correct password
+      Password: "Password100@11"
 
+- waitForAnimationToEnd
+
+# Navigate to Transfer Money
 - tapOn:
     id: menuTransferMoneyIcon
+- waitForAnimationToEnd
+
 - assertVisible: TRANSFER MONEY
 - assertVisible: Recent contacts
 - assertVisible:
     id: recipient_root_view
 - assertVisible: Mobile Number
+
+# Run transfer flow
 - runFlow:
-    file: "../../flows/Verify_TransferBalance.yaml" # Adjust relative path to point to your login_helper location
+    file: "../../flows/Verify_TransferBalance.yaml"
     env:
       User: "1000000077"
       Amount: "255"
+
+- waitForAnimationToEnd
+
+# Assert limit exceeded dialog
 - assertVisible:
     id: dialogCardView
 - assertVisible: Number of daily transaction limit reached or will exceed.
+
+# Dismiss and go home
 - tapOn: TRY AGAIN
+- waitForAnimationToEnd
+
 - tapOn:
     id: ivHome
+- waitForAnimationToEnd
+
+# Teardown — logout and stop
 - runFlow: ../../flows/Tear_down.yaml
-- stopApp

@@ -1,6 +1,11 @@
-appId: com.fastpay.agent
+appId: com.fastpay.business
+tags:
+  - smoke
+  - regression
+  - P0
+  - Functional
 ---
-- launchApp
+- tapOn: FastpayAgent
 - runFlow:
     file: '../../flows/login_helper.yaml' # Adjust relative path to point to your login_helper location
     env:

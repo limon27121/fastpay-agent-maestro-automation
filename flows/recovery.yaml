@@ -1,7 +1,7 @@
-appId: com.fastpay.agent
+appId: com.fastpay.business
 ---
-- stopApp
-- launchApp
+# - stopApp
+- tapOn: FastpayAgent
 - waitForAnimationToEnd
 
 # Try go home if logged in
@@ -15,6 +15,6 @@ appId: com.fastpay.agent
 - runFlow:
     file: "../flows/helpers/logout.yaml"
     optional: true
-
 - waitForAnimationToEnd
-- stopApp
+- stopApp:
+    appId: com.fastpay.agent
