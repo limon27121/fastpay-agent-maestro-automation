@@ -2,19 +2,19 @@ appId: com.fastpay.agent
 ---
 # Dismiss any open dialog if present
 - runFlow:
-    file: "helpers/dismiss_dialog.yaml"
+    file: "./helpers/dismiss_dialog.yaml"
     optional: true
 
 # Go to home screen first
 - runFlow:
-    file: "helpers/go_home.yaml"
+    file: "./helpers/go_home.yaml"
     optional: true
 
 - waitForAnimationToEnd
 
 # Logout
 - runFlow:
-    file: "helpers/logout.yaml"
+    file: "./helpers/logout.yaml"
     optional: true
 
 - waitForAnimationToEnd

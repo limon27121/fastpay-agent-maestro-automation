@@ -26,3 +26,4 @@ appId: com.fastpay.agent
 - runFlow:
     file: "../e2e/Buy_Balance/Successful_Buy_Balance.yaml"
     optional: true
+- runFlow: ../flows/recovery.yaml
