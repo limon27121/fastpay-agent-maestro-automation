@@ -1,0 +1,20 @@
+appId: com.fastpay.agent
+---
+- stopApp
+- launchApp
+- waitForAnimationToEnd
+
+# Try go home if logged in
+- runFlow:
+    file: "../flows/helpers/go_home.yaml"
+    optional: true
+
+- waitForAnimationToEnd
+
+# Try logout if on home screen
+- runFlow:
+    file: "../flows/helpers/logout.yaml"
+    optional: true
+
+- waitForAnimationToEnd
+- stopApp

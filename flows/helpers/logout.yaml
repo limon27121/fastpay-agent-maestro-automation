@@ -1,0 +1,6 @@
+appId: com.fastpay.agent
+---
+- tapOn: Navigate up
+- waitForAnimationToEnd
+- tapOn: LOG OUT
+- waitForAnimationToEnd
