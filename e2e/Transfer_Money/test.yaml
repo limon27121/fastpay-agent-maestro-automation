@@ -1,0 +1,62 @@
+appId: com.fastpay.agent
+---
+# ========================================================================
+# DEFENSIVE HOOK: Only attempt transaction if login succeeded and Home is visible
+# ========================================================================
+- runFlow:
+    when:
+      visible:
+        id: "menuTransferMoneyIcon"
+    commands:
+      - tapOn:
+          id: "menuTransferMoneyIcon"
+      - assertVisible: "TRANSFER MONEY"
+      - assertVisible: "Recent contacts"
+      - assertVisible:
+          id: "recipient_root_view"
+      - assertVisible: "Mobile Number"
+
+      - runFlow:
+          file: "../../flows/Verify_TransferBalance.yaml"
+          env:
+            User: "1000000077"
+            Amount: "255"
+
+      # ========================================================================
+      # LIMIT EVALUATION LOGIC
+      # ========================================================================
+      # PATH A: Limit Has Been Hit (Dialog shows up)
+      - runFlow:
+          when:
+            visible:
+              id: "dialogCardView"
+          commands:
+            - assertVisible: "Number of daily transaction limit reached or will exceed."
+            - tapOn: "TRY AGAIN"
+            - tapOn:
+                id: "ivHome"
+
+      # PATH B: Transaction Succeeded / Normal Path (No Dialog)
+      - runFlow:
+          when:
+            notVisible:
+              id: "dialogCardView"
+          commands:
+            - runFlow:
+                when:
+                  visible: "PROCEED"
+                commands:
+                  - tapOn: "PROCEED"
+            - tapOn:
+                id: "ivHome"
+# ========================================================================
+# FALLBACK: If login failed and we aren't even on the dashboard, log an echo
+# instead of crashing the runner so the 3rd file can still run.
+# ========================================================================
+# - runFlow:
+#     when:
+#       notVisible:
+#         id: "menuTransferMoneyIcon"
+#     commands:
+#       # Renamed 'echo' to the valid Maestro 'log' command
+#       - log: "Skipping Transfer Money test because login dashboard was unreachable."

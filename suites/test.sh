@@ -16,7 +16,7 @@ PIN="5890"
 
 # --- Ubuntu Dynamic Path Configuration ---
 # $HOME expands to /home/limon automatically
-PROJECT_ROOT="$HOME/FastPayAgent_Maestro"
+# PROJECT_ROOT="$HOME/FastPayAgent_Maestro"
 # SCRIPT_DIR="$PROJECT_ROOT/suites"
 # REGRESSION_FILE="$SCRIPT_DIR/test.yaml"
 PROJECT_ROOT="$HOME/FastPayAgent_Maestro"

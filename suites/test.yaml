@@ -2,4 +2,45 @@ appId: com.fastpay.agent
 ---
 - runFlow: ../e2e/LogIn/LogIn_success.yaml
 - runFlow: ../e2e/Transfer_Money/Limit_Exceed.yaml
+# - runFlow: ../e2e/Transfer_Money/test.yaml
 - runFlow: ../e2e/Buy_Balance/Successful_Buy_Balance.yaml
+# appId: com.fastpay.agent
+# tags:
+#   - smoke
+#   - regression
+#   - P0
+#   - Functional
+
+# # ========================================================================
+# # GLOBAL SAFETY NET: Recovers the app state if a previous flow crashed
+# # ========================================================================
+# onFlowComplete:
+#   - runFlow:
+#       when:
+#         visible: "PROCEED"
+#       commands:
+#         - tapOn:
+#             id: "dialogCloseIcon"
+#   - runFlow:
+#       when:
+#         notVisible:
+#           id: "ivHome"
+#       commands:
+#         # If we get stuck on a sub-screen, tap back or home to reset for the next file
+#         - tapOn:
+#             id: "ivHome"
+# ---
+# # ========================================================================
+# # MASTER EXECUTION THREAD
+# # ========================================================================
+# # 1. Start the app normally without triggering the Android Security Error
+# - launchApp
+
+# # 2. Execute LogIn Flow
+# - runFlow: ../e2e/LogIn/LogIn_success.yaml
+
+# # 3. Execute Transfer Money Limit Flow (Now wrapped defensively)
+# - runFlow: ../e2e/Transfer_Money/test.yaml
+
+# # 4. Execute Buy Balance Flow (Will now run because test.yaml won't crash the runner)
+# - runFlow: ../e2e/Buy_Balance/Successful_Buy_Balance.yaml
