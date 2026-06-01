@@ -1,7 +1,7 @@
-appId: com.fastpay.agent
+appId: com.fastpay.business
 ---
 - stopApp
-- launchApp
+- tapOn: FastpayAgent
 - waitForAnimationToEnd
 
 # Try go home if logged in
@@ -17,4 +17,7 @@ appId: com.fastpay.agent
     optional: true
 
 - waitForAnimationToEnd
-- stopApp
+
+# ✅ Correct — stop the agent app explicitly
+- stopApp:
+    appId: com.fastpay.agent

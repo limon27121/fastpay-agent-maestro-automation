@@ -1,3 +1,4 @@
 appId: com.fastpay.agent
 ---
-- back
+- tapOn:
+    id: dialogCloseIcon
