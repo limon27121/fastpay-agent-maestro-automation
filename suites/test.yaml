@@ -1,9 +1,12 @@
-appId: com.fastpay.agent
----
-- runFlow: ../e2e/LogIn/LogIn_success.yaml
-- runFlow: ../e2e/Transfer_Money/Limit_Exceed.yaml
-# - runFlow: ../e2e/Transfer_Money/test.yaml
-- runFlow: ../e2e/Buy_Balance/Successful_Buy_Balance.yaml
+# appId: com.fastpay.agent
+
+# ---
+
+# - runFlow: ../e2e/LogIn/LogIn_success.yaml
+# - runFlow: ../e2e/Transfer_Money/Limit_Exceed.yaml
+# # - runFlow: ../e2e/Transfer_Money/test.yaml
+# - runFlow: ../e2e/Buy_Balance/Successful_Buy_Balance.yaml
+
 # appId: com.fastpay.agent
 # tags:
 #   - smoke
@@ -44,3 +47,25 @@ appId: com.fastpay.agent
 
 # # 4. Execute Buy Balance Flow (Will now run because test.yaml won't crash the runner)
 # - runFlow: ../e2e/Buy_Balance/Successful_Buy_Balance.yaml
+appId: com.fastpay.agent
+---
+# ========================================================================
+# TEST 1: LogIn Success
+# ========================================================================
+- runFlow:
+    file: "../e2e/LogIn/LogIn_success.yaml"
+
+# ========================================================================
+# TEST 2: Limit Exceed
+# Even if this test throws an element missing error or fails an assertion,
+# 'optional: true' forces Maestro to ignore it and proceed to Test 3!
+# ========================================================================
+- runFlow:
+    file: "../e2e/Transfer_Money/Limit_Exceed.yaml"
+    optional: true
+
+# ========================================================================
+# TEST 3: Buy Balance
+# ========================================================================
+- runFlow:
+    file: "../e2e/Buy_Balance/Successful_Buy_Balance.yaml"

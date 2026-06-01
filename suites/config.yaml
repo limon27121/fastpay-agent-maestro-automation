@@ -1,0 +1,14 @@
+# suites/config.yaml
+appId: com.fastpay.agent
+
+# 1. Look for test files inside the e2e folder (relative to this file)
+flows:
+  - "../e2e/**/*.yaml" 
+
+# 2. Arrange the execution sequence using ONLY the plain file names
+executionOrder:
+  continueOnFailure: true
+  flowsOrder:
+    - LogIn_success           # Matches ../e2e/LogIn/LogIn_success.yaml
+    - Limit_Exceed            # Matches ../e2e/Transfer_Money/Limit_Exceed.yaml
+    - Successful_Buy_Balance   # Matches ../e2e/Buy_Balance/Successful_Buy_Balance.yaml

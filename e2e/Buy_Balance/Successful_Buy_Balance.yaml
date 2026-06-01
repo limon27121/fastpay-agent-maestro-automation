@@ -1,7 +1,6 @@
 appId: com.fastpay.agent
 ---
 - launchApp
-
 - runFlow:
     file: '../../flows/login_helper.yaml' # Adjust relative path to point to your login_helper location
     env:
